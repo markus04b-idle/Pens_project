@@ -1,6 +1,10 @@
 from sqlmodel import SQLModel, Field, create_engine
 from typing import Optional
-from
+from pathlib import Path
+
+# small shared engine so other modules can import it
+DB_PATH = Path("penguins.db")
+engine = create_engine(f"sqlite:///{DB_PATH}")
 
 
 class Roster(SQLModel, table=True):
@@ -46,3 +50,7 @@ class StatLine(SQLModel, table=True):
     sv: Optional[int]
     ga: Optional[int]
     so: Optional[int]
+
+# Provide aliases expected by older code (`read.py` imports `Bio` and `Stats`)
+Bio = Roster
+Stats = StatLine

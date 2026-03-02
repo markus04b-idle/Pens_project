@@ -1,10 +1,11 @@
 from sqlmodel import Session, select
-from models import engine, Bio, Stats
+from models import engine, Bio
 import pandas as pd
 
 with Session(engine) as session:
-    statement = select(Bio.first_name, Bio.last_name, Bio.position)
+    # `Bio` is an alias for `Roster`; select fields that exist in the model
+    statement = select(Bio.player, Bio.pos)
     records = session.exec(statement).all()
-    
-records_df = pd.DataFrame(records)
+
+records_df = pd.DataFrame(records, columns=["player", "pos"])
 print(records_df)
