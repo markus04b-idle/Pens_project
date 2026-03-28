@@ -2,6 +2,7 @@ from sqlmodel import SQLModel, Field, create_engine
 from typing import Optional
 from pathlib import Path
 
+
 # small shared engine so other modules can import it
 DB_PATH = Path("penguins.db")
 engine = create_engine(f"sqlite:///{DB_PATH}")
