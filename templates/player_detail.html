@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ player_name }}</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <header class="hero compact">
+      <h1>{{ player_name }}</h1>
+      <a href="/players">Back to Players</a>
+    </header>
+
+    <main class="container split">
+      <section class="card">
+        <h2>Roster</h2>
+        {% if roster %}
+        <ul>
+          <li>Number: {{ roster.number or "-" }}</li>
+          <li>Position: {{ roster.pos or "-" }}</li>
+          <li>Shoots: {{ roster.sh or "-" }}</li>
+          <li>Height: {{ roster.ht or "-" }}</li>
+          <li>Weight: {{ roster.wt or "-" }}</li>
+          <li>Born: {{ roster.born or "-" }}</li>
+          <li>Birthplace: {{ roster.birthplace or "-" }}</li>
+        </ul>
+        {% else %}
+        <p>No roster data found.</p>
+        {% endif %}
+      </section>
+
+      <section class="card">
+        <h2>Stats</h2>
+        {% if stats %}
+        <ul>
+          <li>GP: {{ stats.gp or "-" }}</li>
+          <li>Goals: {{ stats.goals or "-" }}</li>
+          <li>Assists: {{ stats.assists or "-" }}</li>
+          <li>Points: {{ stats.points or "-" }}</li>
+          <li>Plus/Minus: {{ stats.plus_minus or "-" }}</li>
+          <li>PIM: {{ stats.pim or "-" }}</li>
+          <li>Shots: {{ stats.s or "-" }}</li>
+          <li>S%: {{ stats.s_pct or "-" }}</li>
+          <li>SV%: {{ stats.sv_pct or "-" }}</li>
+          <li>GAA: {{ stats.gaa or "-" }}</li>
+        </ul>
+        {% else %}
+        <p>No stat data found.</p>
+        {% endif %}
+      </section>
+    </main>
+  </body>
+</html>

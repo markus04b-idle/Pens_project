@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Players</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <header class="hero compact">
+      <h1>Players</h1>
+      <a href="/">Back Home</a>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <form method="get" class="filters">
+          <input type="text" name="q" value="{{ q }}" placeholder="Search name" />
+          <input type="text" name="pos" value="{{ pos }}" placeholder="Position (C, RW, D, G)" />
+          <button type="submit">Apply</button>
+        </form>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Player</th>
+              <th>#</th>
+              <th>Pos</th>
+              <th>Sh</th>
+              <th>Ht</th>
+              <th>Wt</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for p in players %}
+            <tr>
+              <td><a href="/players/{{ p.player }}">{{ p.player }}</a></td>
+              <td>{{ p.number or "-" }}</td>
+              <td>{{ p.pos or "-" }}</td>
+              <td>{{ p.sh or "-" }}</td>
+              <td>{{ p.ht or "-" }}</td>
+              <td>{{ p.wt or "-" }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pens Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <h1>Pens Dashboard</h1>
+      <p>{{ roster_count }} players loaded</p>
+      <div class="actions">
+        <a href="/players">Browse Players</a>
+        <a href="/docs">API Docs</a>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <h2>Top Scorers</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Player</th>
+              <th>Pos</th>
+              <th>GP</th>
+              <th>G</th>
+              <th>A</th>
+              <th>P</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for s in top_scorers %}
+            <tr>
+              <td><a href="/players/{{ s.player }}">{{ s.player }}</a></td>
+              <td>{{ s.pos or "-" }}</td>
+              <td>{{ s.gp or "-" }}</td>
+              <td>{{ s.goals or "-" }}</td>
+              <td>{{ s.assists or "-" }}</td>
+              <td>{{ s.points or "-" }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>

@@ -7,6 +7,7 @@ from HTML snippets.  The files include:
 * `stats.csv` – season statistics for skaters and goalies.
 * `models.py` – SQLModel classes defining the schema.
 * `create_db.py` – script to build `penguins.db` and populate it from the CSVs.
+* `app.py` – FastAPI app with JSON endpoints and HTML pages.
 
 ## Building the database
 
@@ -19,3 +20,42 @@ python3 create_db.py
 That will remove any existing `penguins.db`, create the tables defined in
 `models.py`, and load the CSV files into the appropriate tables.  You can then
 inspect the database using `sqlite3` or a GUI tool.
+
+## Run the FastAPI app
+
+Install dependencies:
+
+```bash
+python3 -m pip install -r requirements.txt
+```
+
+Rebuild data (optional but recommended):
+
+```bash
+python3 create_db.py
+```
+
+Start the server:
+
+```bash
+uvicorn app:app --reload
+```
+
+Open:
+
+* `http://127.0.0.1:8000/` for the web app
+* `http://127.0.0.1:8000/docs` for API docs
+
+## API endpoints
+
+* `GET /api/health`
+* `GET /api/roster?pos=C&limit=50`
+* `GET /api/stats?pos=RW&limit=50`
+* `GET /api/top-scorers?limit=10`
+* `GET /api/players/{player_name}`
+
+## Web pages
+
+* `/` dashboard with top scorers
+* `/players` roster list with filters
+* `/players/{player_name}` player details
