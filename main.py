@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Optional
 
-#fastapi dev app.py to run the server
+#fastapi dev main.py to run the server
 
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.responses import HTMLResponse
