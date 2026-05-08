@@ -14,8 +14,10 @@ from models import Roster, StatLine, engine
 BASE_DIR = Path(__file__).resolve().parent
 
 app = FastAPI(title="Pens Roster App", version="1.0.0")
-app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
+# Configure Jinja2 to look in both templates and static directories
 templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
+templates.env.loader.searchpath.append(str(BASE_DIR / "static"))
+app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
 
 
 @app.get("/api/health")
